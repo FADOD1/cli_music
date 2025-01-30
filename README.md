@@ -44,6 +44,9 @@ Este projeto utiliza as seguintes crates:
 - `crossterm` - Para manipulação do terminal.
 - `rodio` - Para reprodução de áudio.
 
+
+
+
 ## 📥 Download do Binário para Linux
 
 Caso prefira você pode usar o `CLI Music Player` em plataformas x86_64 Linux sem precisar compilar! 🎵  
@@ -55,7 +58,17 @@ Crie uma pasta que servirá para colocar o cli_music, por exemplo: `cli_music`
 adicione o binario a essa pasta e execute-o , a pasta music e criada automaticamente e nela que deve
 se adicionadas as suas musicas.
 
-# Passos para criar um alias para executar o cli_music sem a necessidade de entrar no diretorio:
+
+
+
+
+
+
+
+
+
+
+## Passos para criar um alias para executar o cli_music sem a necessidade de entrar no diretorio e executar manualmente:
 
 Abra o arquivo de configuração do seu shell (dependendo do shell que você está usando):
 
@@ -97,12 +110,22 @@ source ~/.zshrc
 Agora, sempre que você digitar `climusic` no terminal, o cli_music será executado.
 
 
-### **Como executar sem o alias**
-#### **Linux**
+
+## **Como executar sem o alias**
+ **Linux**
 ```sh
 chmod +x cli_music
 ./cli_music
 ```
+
+
+
+
+
+
+
+
+
 
 ## Licença
 Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
