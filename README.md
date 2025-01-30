@@ -49,9 +49,55 @@ Este projeto utiliza as seguintes crates:
 Caso prefira você pode usar o `CLI Music Player` em plataformas x86_64 Linux sem precisar compilar! 🎵  
 
 Baixe a versão mais recente:  
-- **Linux:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/tag/Latest)  
+- **Linux:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/tag/Latest)
 
-### **Como executar**
+Crie uma pasta que servirá para colocar o cli_music, por exemplo: `cli_music`
+adicione o binario a essa pasta e execute-o , a pasta music e criada automaticamente e nela que deve
+se adicionadas as suas musicas.
+
+# Passos para criar um alias para executar o cli_music sem a necessidade de entrar no diretorio:
+
+Abra o arquivo de configuração do seu shell (dependendo do shell que você está usando):
+
+Para Bash:
+
+```sh
+nano ~/.bashrc
+```
+
+Para Zsh:
+
+```sh
+nano ~/.zshrc
+
+```
+
+Crie o alias para o binário, informando o caminho do binário do cli_music:
+
+```sh
+alias climusic='/caminho/para/o/binario/nome_do_binario'
+```
+
+Salve e saia do editor (`CTRL + X`, depois `Y` para confirmar e Enter para salvar).
+
+- Recarregue o arquivo de configuração para que as mudanças entrem em vigor:
+
+Para Bash:
+
+```sh
+source ~/.bashrc
+```
+
+Para Zsh:
+
+```sh
+source ~/.zshrc
+```
+
+Agora, sempre que você digitar `climusic` no terminal, o cli_music será executado.
+
+
+### **Como executar sem o alias**
 #### **Linux**
 ```sh
 chmod +x cli_music
