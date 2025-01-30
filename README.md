@@ -56,7 +56,7 @@ Baixe a versão mais recente:
 ```sh
 chmod +x cli_music
 ./cli_music
-
+```
 
 ## Licença
 Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
