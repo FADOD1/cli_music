@@ -1,5 +1,11 @@
 # CLI Music Player 🎵
 
+
+
+https://github.com/user-attachments/assets/653a83e3-e8b1-4c9e-bc5a-6277fe721cd0
+
+
+
 ## Sobre
 `cli_music` é um reprodutor de música minimalista para terminal, desenvolvido em Rust. Ele permite navegar e reproduzir arquivos MP3 armazenados no diretório `music/` com controles simples diretamente pelo teclado.
 
