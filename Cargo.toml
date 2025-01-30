@@ -1,0 +1,11 @@
+[package]
+name = "aplication"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crossterm = "0.27"
+rodio = "0.17.1"
+sink = "0.1.0"
+elapsed = "0.1.2"
+seek = "0.1.0"
