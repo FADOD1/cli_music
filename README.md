@@ -64,6 +64,8 @@ Crie uma pasta que servirá para colocar o cli_music, por exemplo: `cli_music`
 adicione o binario a essa pasta e execute-o , a pasta music e criada automaticamente e nela que deve
 se adicionadas as suas musicas.
 
+Atenção: caso não crie a pasta `music` automaticamente ela deve ser criada!!
+
 
 
 
