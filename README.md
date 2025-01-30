@@ -44,6 +44,20 @@ Este projeto utiliza as seguintes crates:
 - `crossterm` - Para manipulação do terminal.
 - `rodio` - Para reprodução de áudio.
 
+## 📥 Download do Binário
+
+Agora você pode usar o `CLI Music Player` sem precisar compilar! 🎵  
+
+Baixe a versão mais recente:  
+- **Linux/macOS:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/latest/download/cli_music)  
+
+### **Como executar**
+#### **Linux/macOS**
+```sh
+chmod +x cli_music
+./cli_music
+
+
 ## Licença
 Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
