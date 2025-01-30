@@ -49,7 +49,7 @@ Este projeto utiliza as seguintes crates:
 Agora você pode usar o `CLI Music Player` sem precisar compilar! 🎵  
 
 Baixe a versão mais recente:  
-- **Linux/macOS:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/latest/download/cli_music)  
+- **Linux/macOS:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/tag/Latest)  
 
 ### **Como executar**
 #### **Linux/macOS**
