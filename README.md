@@ -58,7 +58,7 @@ Este projeto utiliza as seguintes crates:
 Caso prefira você pode usar o `CLI Music Player` em plataformas x86_64 Linux sem precisar compilar! 🎵  
 
 Baixe a versão mais recente:  
-- **Linux:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/tag/Latest)
+- **Linux:** [Baixar cli_music](https://github.com/FADOD1/cli_music/releases/tag/v2.0.0)
 
 Crie uma pasta que servirá para colocar o cli_music, por exemplo: `cli_music`
 adicione o binario a essa pasta e execute-o , a pasta music e criada automaticamente e nela que deve
