@@ -1,6 +1,6 @@
 [package]
-name = "aplication"
-version = "0.1.0"
+name = "cli-music-player-v2"
+version = "0.2.0"
 edition = "2021"
 
 [dependencies]

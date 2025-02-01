@@ -52,31 +52,34 @@ pub fn music_player() {
     let (_stream, stream_handle) = OutputStream::try_default().unwrap();
     let sink = Sink::try_new(&stream_handle).unwrap();
     let mut current_song = 0;
-    let mut volume = 0.5;
+    let mut volume: f32 = 0.5;
     let mut index = 0;
     let mut total_elapsed = Duration::default();
     let mut play_start: Option<Instant> = None;
-
-    // Initialize playback state
     let mut playing = true;
-    let file = File::open(&songs[0].path).unwrap();
-    sink.append(Decoder::new(file).unwrap());
-    play_start = Some(Instant::now());
-    sink.set_volume(volume);
+    let mut offset = 0;
 
     let mut stdout = stdout();
     enable_raw_mode().unwrap();
 
     loop {
-        queue!(stdout, Clear(ClearType::All)).unwrap();
+        if sink.empty() {
+            current_song = (current_song + 1) % songs.len();
+            let file = File::open(&songs[current_song].path).unwrap();
+            sink.append(Decoder::new(file).unwrap());
+            sink.set_volume(volume);
+            sink.play();
+            play_start = Some(Instant::now());
+        }
 
+        queue!(stdout, Clear(ClearType::All)).unwrap();
+        
         let width = 50;
         let line = "-".repeat(width);
         let title = "🎹 CLI MUSIC PLAYER 🎵";
         let song_list_start = 9;
-        let status_line = song_list_start + songs.len() as u16 + 2;
+        let status_line = song_list_start + 10 + 2;
 
-        // Header section
         queue!(
             stdout,
             MoveTo(0, 0),
@@ -93,32 +96,20 @@ pub fn music_player() {
             Print("Enter: Select  +/-: Volume  q: Quit"),
             MoveTo(0, 7),
             Print(format!("{}\n", line)),
-        )
-        .unwrap();
+        ).unwrap();
 
-        // Song list
-        for (i, song) in songs.iter().enumerate() {
+        let display_songs = &songs[offset..(offset + 10).min(songs.len())];
+        for (i, song) in display_songs.iter().enumerate() {
             let y_pos = song_list_start + i as u16;
             queue!(stdout, MoveTo(0, y_pos)).unwrap();
-            let display = if i == index {
-                format!("▶ {}", song.name)
-            } else {
-                song.name.clone()
-            };
-            if i == index {
-                queue!(
-                    stdout,
-                    SetForegroundColor(Color::Green),
-                    Print(display),
-                    ResetColor
-                )
-                .unwrap();
+            let display = if index == offset + i { format!("▶ {}", song.name) } else { song.name.clone() };
+            if index == offset + i {
+                queue!(stdout, SetForegroundColor(Color::Green), Print(display), ResetColor).unwrap();
             } else {
                 queue!(stdout, Print(display)).unwrap();
             }
         }
 
-        // Playback info (positioned below song list)
         let status = if playing { "▶ Playing" } else { "⏸ Paused" };
         let elapsed = if let Some(start) = play_start {
             total_elapsed + start.elapsed()
@@ -126,7 +117,7 @@ pub fn music_player() {
             total_elapsed
         };
         let elapsed = format!("{:.0?}", elapsed);
-        let filled = (volume * 10.0).round() as usize;
+        let filled = (volume * 10.0_f32).round() as usize;
         let volume_bar = format!("Vol: {}{}", "▣".repeat(filled), "━".repeat(10 - filled));
 
         queue!(
@@ -135,17 +126,25 @@ pub fn music_player() {
             Print(format!("{} {}", status, elapsed)),
             MoveTo(0, status_line + 1),
             Print(volume_bar),
-        )
-        .unwrap();
+        ).unwrap();
 
         stdout.flush().unwrap();
 
         if let Ok(true) = event::poll(Duration::from_millis(100)) {
             if let Ok(event::Event::Key(KeyEvent { code, .. })) = event::read() {
                 match code {
-                    KeyCode::Up if index > 0 => index -= 1,
-                    KeyCode::Down if index < songs.len() - 1 => index += 1,
-
+                    KeyCode::Up if index > 0 => {
+                        index -= 1;
+                        if index < offset {
+                            offset -= 1;
+                        }
+                    }
+                    KeyCode::Down if index < songs.len() - 1 => {
+                        index += 1;
+                        if index >= offset + 10 {
+                            offset += 1;
+                        }
+                    }
                     KeyCode::Char(' ') => {
                         playing = !playing;
                         if playing {
@@ -158,30 +157,24 @@ pub fn music_player() {
                             sink.pause();
                         }
                     }
-
-                    KeyCode::Char('+') if volume < 1.0 => {
-                        volume = (volume + 0.1).min(1.0);
+                    KeyCode::Char('+') => {
+                        volume = (volume + 0.1_f32).min(1.0_f32);
                         sink.set_volume(volume);
                     }
-
-                    KeyCode::Char('-') if volume > 0.0 => {
-                        volume = (volume - 0.1).max(0.0);
+                    KeyCode::Char('-') => {
+                        volume = (volume - 0.1_f32).max(0.0_f32);
                         sink.set_volume(volume);
                     }
-
                     KeyCode::Enter => {
-                        if current_song != index || sink.empty() {
-                            sink.stop();
-                            let file = File::open(&songs[index].path).unwrap();
-                            sink.append(Decoder::new(file).unwrap());
-                            current_song = index;
-                            playing = true;
-                            play_start = Some(Instant::now());
-                            total_elapsed = Duration::default();
-                        }
+                        sink.stop();
+                        let file = File::open(&songs[index].path).unwrap();
+                        sink.append(Decoder::new(file).unwrap());
+                        current_song = index;
+                        playing = true;
+                        play_start = Some(Instant::now());
+                        total_elapsed = Duration::default();
                     }
-
-                    KeyCode::Esc | KeyCode::Char('q') => break,
+                    KeyCode::Char('q') => break,
                     _ => {}
                 }
             }

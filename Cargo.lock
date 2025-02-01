@@ -34,17 +34,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "aplication"
-version = "0.1.0"
-dependencies = [
- "crossterm",
- "elapsed",
- "rodio",
- "seek",
- "sink",
-]
-
-[[package]]
 name = "arrayvec"
 version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -164,6 +153,17 @@ name = "claxon"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4bfbf56724aa9eca8afa4fcfadeb479e722935bb2a0900c2d37e0cc477af0688"
+
+[[package]]
+name = "cli-music-player-v2"
+version = "0.2.0"
+dependencies = [
+ "crossterm",
+ "elapsed",
+ "rodio",
+ "seek",
+ "sink",
+]
 
 [[package]]
 name = "colored"
