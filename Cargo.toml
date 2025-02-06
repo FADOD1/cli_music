@@ -1,5 +1,5 @@
 [package]
-name = "cli-music-player-v2"
+name = "climusic_v2"
 version = "0.2.0"
 edition = "2021"
 
@@ -9,3 +9,5 @@ rodio = "0.17.1"
 sink = "0.1.0"
 elapsed = "0.1.2"
 seek = "0.1.0"
+ctrlc = "3.4"
+discord-rpc = "0.1.0"

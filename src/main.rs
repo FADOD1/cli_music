@@ -1,9 +1,5 @@
-use brabox::music_player;
+mod climusic_v2;
 
-
-mod brabox;
-
-// chamando função do modulo
 fn main() {
-    music_player();
+    climusic_v2::music_player();
 }
