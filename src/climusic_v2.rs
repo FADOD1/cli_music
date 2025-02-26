@@ -1,3 +1,5 @@
+// v2_stable
+
 use crossterm::{
     cursor::MoveTo,
     event::{self, KeyCode, KeyEvent},
@@ -76,7 +78,7 @@ pub fn music_player() {
         
         let width = 50;
         let line = "-".repeat(width);
-        let title = "🎹 CLI MUSIC PLAYER v2 🎵";
+        let title = "🎹 CLI MUSIC PLAYER 🎵";
         let song_list_start = 9;
         let status_line = song_list_start + 10 + 2;
 
