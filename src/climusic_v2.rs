@@ -176,7 +176,10 @@ pub fn music_player() {
                         play_start = Some(Instant::now());
                         total_elapsed = Duration::default();
                     }
-                    KeyCode::Char('q') => break,
+                    KeyCode::Char('q') => {
+                        println!("\n\n\nObrigado por utilizar climusic");
+                        break;
+                    }
                     _ => {}
                 }
             }
